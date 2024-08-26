@@ -1,3 +1,6 @@
+#ifndef INSTRUCTION_H
+#define INSTRUCTION_H
+
 #include <string>
 
 enum class InstructionFormat
@@ -28,3 +31,5 @@ struct Instruction
     std::string rs2;
     int32_t immediate;
 };
+
+#endif

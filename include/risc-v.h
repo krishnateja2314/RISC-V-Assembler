@@ -1,3 +1,6 @@
+#ifndef RISC_V_H
+#define RISC_V_H
+
 #include "instruction.h"
 #include <unordered_map>
 
@@ -15,3 +18,5 @@ const std::unordered_map<std::string, InstructionInfo> instructionData = {
     {"addi", {InstructionFormat::I_TYPE, 0x33, 0x0, 0x00}},
     {"xori", {InstructionFormat::I_TYPE, 0x33, 0x4, 0x00}},
 };
+
+#endif
