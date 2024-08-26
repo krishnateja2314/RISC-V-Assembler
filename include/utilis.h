@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 
-// function takes a line and splits it by space and comma and returns a vector
+// function takes a line and returns vators with all the instrections
 std::vector<std::string> tokenize(const std::string &line);
-
+int32_t strToInt(const string &num)
 #endif

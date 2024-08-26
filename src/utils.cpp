@@ -1,5 +1,4 @@
 #include "../include/utilis.h"
-
 using namespace std;
 
 vector<string> tokenize(const string &line)
@@ -9,16 +8,13 @@ vector<string> tokenize(const string &line)
     bool xCount = 0;
     for (int i = 0; i < line.length(); i++)
     {
-        if (line[i] == ' ')
-            continue;
-        if (line[i] == 'x' && xCount == 0)
+        if (line[0] == '#' || line[0] == ';')
         {
-            tokens.push_back(token);
-            token = 'x';
-            xCount = 1;
-            continue;
+            break;
         }
         if (line[i] == ',')
+            continue;
+        if (line[i] == ' ')
         {
             tokens.push_back(token);
             token = "";
@@ -26,7 +22,58 @@ vector<string> tokenize(const string &line)
         }
         token += line[i];
     }
-
     tokens.push_back(token);
+    if (tokens[2] != *tokens.end() && (tokens[2][0] <= '9' && tokens[2][0] >= '0') || tokens[2][0] == '-')
+    {
+        string token = tokens[2];
+        string newToken = "";
+        int j;
+        for (j = 0; j < token.length(); j++)
+        {
+            if (token[j] == '(')
+            {
+                tokens.push_back(newToken);
+                newToken = "";
+                break;
+            }
+            newToken += token[j];
+        }
+        for (j++; j < token.length(); j++)
+        {
+            if (token[j] == ')')
+            {
+                tokens[2] = (newToken);
+                token = newToken;
+                break;
+            }
+            newToken += token[j];
+        }
+    }
     return tokens;
+}
+
+int32_t strToInt(const string &num)
+{
+    int32_t i = 0;
+    if (num[0] == '-')
+    {
+        string token = "";
+        for (int j = 1; j < num.length(); j++)
+        {
+            token += num[j];
+        }
+        i = stoi(token);
+        i *= -1;
+    }
+    else
+    {
+        int32_t i = 0;
+        string token = "";
+        for (int j = 1; j < num.length(); j++)
+        {
+            token += num[j];
+        }
+        i = stoi(token);
+    }
+    return i;
 }
