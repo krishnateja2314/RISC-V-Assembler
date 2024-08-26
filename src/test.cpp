@@ -10,7 +10,7 @@ int main()
     v = tokenize(s);
     for (int i = 0; i < v.size(); i++)
     {
-        cout << v[i];
+        cout << v[i] << endl;
     }
 
     return 0;
