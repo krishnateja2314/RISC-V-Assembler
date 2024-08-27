@@ -2,6 +2,7 @@
 #define INSTRUCTION_H
 
 #include <string>
+#include <cstdint>
 
 enum class InstructionFormat
 {
