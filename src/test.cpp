@@ -1,17 +1,14 @@
-#include "../include/utilis.h"
+#include "../include/parser.h"
 using namespace std;
 #include <iostream>
 
 int main()
 {
 
-    string s = "lui t1, 110";
-    vector<string> v;
-    v = tokenize(s);
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << endl;
-    }
-
+    Instruction result;
+    string s = "jbl x1, 3543";
+    result = parseInstruction(s);
+    cout << result.mnemonic << result.rd << result.rs1 << result.immediate << endl
+         << result.instructionInfo.opcode << result.instructionInfo.funct3 << result.instructionInfo.funct7;
     return 0;
 }

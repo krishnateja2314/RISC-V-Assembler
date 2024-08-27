@@ -23,7 +23,7 @@ vector<string> tokenize(const string &line)
         token += line[i];
     }
     tokens.push_back(token);
-    if (tokens[2] != *tokens.end() && (tokens[2][0] <= '9' && tokens[2][0] >= '0') || tokens[2][0] == '-')
+    if (tokens.size() == 3 && ((tokens[2][0] <= '9' && tokens[2][0] >= '0') || tokens[2][0] == '-'))
     {
         string token = tokens[2];
         string newToken = "";
@@ -67,9 +67,8 @@ int32_t strToInt(const string &num)
     }
     else
     {
-        int32_t i = 0;
         string token = "";
-        for (int j = 1; j < num.length(); j++)
+        for (int j = 0; j < num.length(); j++)
         {
             token += num[j];
         }

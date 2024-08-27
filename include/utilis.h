@@ -8,5 +8,5 @@
 
 // function takes a line and returns vators with all the instrections
 std::vector<std::string> tokenize(const std::string &line);
-int32_t strToInt(const string &num)
+int32_t strToInt(const std::string &num);
 #endif

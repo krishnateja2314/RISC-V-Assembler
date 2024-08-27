@@ -5,6 +5,7 @@ Instruction parseInstruction(const std::string &line)
 {
     vector<string> tokens = tokenize(line);
     Instruction instrction;
+
     if (tokens.size() == 0)
         return instrction;
 
@@ -14,9 +15,13 @@ Instruction parseInstruction(const std::string &line)
         instrction.error = "No instruction as " + tokens[0];
         return instrction;
     }
+
     instrction.mnemonic = tokens[0];
     instrction.instructionInfo = instrectInfo->second;
 
+    int size = tokens.size();
+    if (instrction.instructionInfo.format == InstructionFormat::B_TYPE)
+        size--;
     for (int i = 1; i < tokens.size(); i++)
     {
         string token = tokens[i];
@@ -37,22 +42,47 @@ Instruction parseInstruction(const std::string &line)
         }
     }
 
-    if (instrction.instructionInfo.format == InstructionFormat::B_TYPE)
+    switch (instrction.instructionInfo.format)
     {
+    case InstructionFormat::B_TYPE:
+        instrction.rs1 = tokens[1];
+        instrction.rs2 = tokens[2];
+        instrction.label = tokens[3];
+        break;
+    case InstructionFormat::R_TYPE:
+        instrction.rd = tokens[1];
+        instrction.rs1 = tokens[2];
+        instrction.rs2 = tokens[3];
+        break;
+    case InstructionFormat::I_TYPE:
+        if (instrction.mnemonic[0] == 'e')
+        {
+            instrction.rd = "x0";
+            instrction.rs1 = "x0";
+            if (instrction.mnemonic == "ecall")
+                instrction.immediate = 0;
+            else
+                instrction.immediate = 1;
+            break;
+        }
+        instrction.rd = tokens[1];
+        instrction.rs1 = tokens[2];
+        instrction.immediate = strToInt(tokens[3]);
+        break;
+    case InstructionFormat::S_TYPE:
         instrction.rs1 = tokens[1];
         instrction.rs2 = tokens[2];
         instrction.immediate = strToInt(tokens[3]);
-    }
-    else if (instrction.instructionInfo.format == InstructionFormat::R_TYPE)
-    {
+        break;
+    case InstructionFormat::J_TYPE:
         instrction.rd = tokens[1];
-        instrction.rs1 = tokens[2];
-        instrction.rs2 = tokens[3];
-    }
-    else if (instrction.instructionInfo.format == InstructionFormat::I_TYPE)
-    {
+        instrction.immediate = strToInt(tokens[2]);
+        break;
+    case InstructionFormat::U_TYPE:
         instrction.rd = tokens[1];
-        instrction.rs1 = tokens[2];
-        instrction.rs2 = tokens[3];
+        instrction.immediate = strToInt(tokens[2]);
+        break;
+    default:
+        break;
     }
 }
