@@ -37,4 +37,8 @@ struct Instruction
     std::string error;
 };
 
+std::string R_type_to_hex(const Instruction R);
+std::string I_type_to_hex(const Instruction I);
+std::string S_type_to_hex(const Instruction S);
+
 #endif
