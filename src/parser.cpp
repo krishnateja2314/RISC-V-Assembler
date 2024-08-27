@@ -72,8 +72,8 @@ Instruction parseInstruction(const std::string &line)
         instrction.immediate = strToInt(tokens[3]);
         break;
     case InstructionFormat::S_TYPE:
-        instrction.rs1 = rigToInt(tokens[1]);
-        instrction.rs2 = rigToInt(tokens[2]);
+        instrction.rs1 = rigToInt(tokens[2]);
+        instrction.rs2 = rigToInt(tokens[1]);
         instrction.immediate = strToInt(tokens[3]);
         break;
     case InstructionFormat::J_TYPE:
@@ -87,4 +87,5 @@ Instruction parseInstruction(const std::string &line)
     default:
         break;
     }
+    return instrction;
 }
