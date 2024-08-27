@@ -22,6 +22,7 @@ Instruction parseInstruction(const std::string &line)
     int size = tokens.size();
     if (instrction.instructionInfo.format == InstructionFormat::B_TYPE)
         size--;
+    // convers alias names to rigester names
     for (int i = 1; i < tokens.size(); i++)
     {
         string token = tokens[i];
@@ -42,6 +43,7 @@ Instruction parseInstruction(const std::string &line)
         }
     }
 
+    // adds all the values acording to the respective format
     switch (instrction.instructionInfo.format)
     {
     case InstructionFormat::B_TYPE:

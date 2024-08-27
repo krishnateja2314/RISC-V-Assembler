@@ -5,6 +5,7 @@ vector<string> tokenize(const string &line)
 {
     vector<string> tokens;
     string token = "";
+    string label;
     bool xCount = 0;
     for (int i = 0; i < line.length(); i++)
     {
@@ -14,6 +15,14 @@ vector<string> tokenize(const string &line)
         }
         if (line[i] == ',')
             continue;
+        if (line[i] == ':')
+        {
+            label = token;
+            token = "";
+            i++;
+            // shull be handeled in future for now nothing happens
+            continue;
+        }
         if (line[i] == ' ')
         {
             tokens.push_back(token);
@@ -62,7 +71,12 @@ int32_t strToInt(const string &num)
         {
             token += num[j];
         }
-        i = stoi(token);
+        if (token[1] == 'x')
+            i = stoi(token, nullptr, 16);
+        else if (token[1] == 'b')
+            i = stoi(token, nullptr, 2);
+        else
+            i = stoi(token);
         i *= -1;
     }
     else
@@ -72,7 +86,12 @@ int32_t strToInt(const string &num)
         {
             token += num[j];
         }
-        i = stoi(token);
+        if (token[1] == 'x')
+            i = stoi(token, nullptr, 16);
+        else if (token[1] == 'b')
+            i = stoi(token, nullptr, 2);
+        else
+            i = stoi(token);
     }
     return i;
 }

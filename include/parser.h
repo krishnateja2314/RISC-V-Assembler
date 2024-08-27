@@ -8,6 +8,8 @@
 #include <vector>
 #include <string>
 
+// takes a line and returns a sturct of type Instruction
+
 Instruction parseInstruction(const std::string &line);
 
 #endif
