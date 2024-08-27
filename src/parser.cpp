@@ -47,41 +47,41 @@ Instruction parseInstruction(const std::string &line)
     switch (instrction.instructionInfo.format)
     {
     case InstructionFormat::B_TYPE:
-        instrction.rs1 = tokens[1];
-        instrction.rs2 = tokens[2];
+        instrction.rs1 = rigToInt(tokens[1]);
+        instrction.rs2 = rigToInt(tokens[2]);
         instrction.label = tokens[3];
         break;
     case InstructionFormat::R_TYPE:
-        instrction.rd = tokens[1];
-        instrction.rs1 = tokens[2];
-        instrction.rs2 = tokens[3];
+        instrction.rd = rigToInt(tokens[1]);
+        instrction.rs1 = rigToInt(tokens[2]);
+        instrction.rs2 = rigToInt(tokens[3]);
         break;
     case InstructionFormat::I_TYPE:
         if (instrction.mnemonic[0] == 'e')
         {
-            instrction.rd = "x0";
-            instrction.rs1 = "x0";
+            instrction.rd = 0;
+            instrction.rs1 = 0;
             if (instrction.mnemonic == "ecall")
                 instrction.immediate = 0;
             else
                 instrction.immediate = 1;
             break;
         }
-        instrction.rd = tokens[1];
-        instrction.rs1 = tokens[2];
+        instrction.rd = rigToInt(tokens[1]);
+        instrction.rs1 = rigToInt(tokens[2]);
         instrction.immediate = strToInt(tokens[3]);
         break;
     case InstructionFormat::S_TYPE:
-        instrction.rs1 = tokens[1];
-        instrction.rs2 = tokens[2];
+        instrction.rs1 = rigToInt(tokens[1]);
+        instrction.rs2 = rigToInt(tokens[2]);
         instrction.immediate = strToInt(tokens[3]);
         break;
     case InstructionFormat::J_TYPE:
-        instrction.rd = tokens[1];
+        instrction.rd = rigToInt(tokens[1]);
         instrction.immediate = strToInt(tokens[2]);
         break;
     case InstructionFormat::U_TYPE:
-        instrction.rd = tokens[1];
+        instrction.rd = rigToInt(tokens[1]);
         instrction.immediate = strToInt(tokens[2]);
         break;
     default:

@@ -18,22 +18,22 @@ enum class InstructionFormat
 struct InstructionInfo
 {
     InstructionFormat format;
-    int16_t opcode;
-    int16_t funct3;
-    int16_t funct7;
+    int opcode;
+    int funct3;
+    int funct7;
     InstructionInfo() : format(InstructionFormat::UNKNOWN), opcode(0), funct3(0), funct7(0) {}
-    InstructionInfo(InstructionFormat format, int16_t opcode, int16_t func3, int16_t func7) : format(format), opcode(opcode), funct3(func3), funct7(func7) {}
+    InstructionInfo(InstructionFormat format, int opcode, int func3, int func7) : format(format), opcode(opcode), funct3(func3), funct7(func7) {}
 };
 
 struct Instruction
 {
     InstructionInfo instructionInfo;
     std::string mnemonic;
-    std::string rd;
-    std::string rs1;
-    std::string rs2;
+    int rd;
+    int rs1;
+    int rs2;
     std::string label;
-    int32_t immediate;
+    int immediate;
     std::string error;
 };
 

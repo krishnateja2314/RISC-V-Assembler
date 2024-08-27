@@ -61,7 +61,7 @@ vector<string> tokenize(const string &line)
     return tokens;
 }
 
-int32_t strToInt(const string &num)
+int strToInt(const string &num)
 {
     int32_t i = 0;
     if (num[0] == '-')
@@ -94,4 +94,13 @@ int32_t strToInt(const string &num)
             i = stoi(token);
     }
     return i;
+}
+
+int rigToInt(const string &num)
+{
+    string token = "";
+    for (int i = 1; i < num.length(); i++)
+        token += num[i];
+
+    return stoi(token);
 }
