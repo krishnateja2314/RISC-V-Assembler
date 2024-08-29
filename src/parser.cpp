@@ -1,4 +1,6 @@
 #include "../include/parser.h"
+#include "../include/utilis.h"
+#include "../include/risc-v.h"
 using namespace std;
 
 Instruction parseInstruction(const std::string &line)
@@ -7,6 +9,7 @@ Instruction parseInstruction(const std::string &line)
     Instruction instrction;
 
     if (tokens.size() == 0)
+        instrction.error = "empty line";
         return instrction;
 
     auto instrectInfo = instructionData.find(tokens[0]);

@@ -37,8 +37,12 @@ struct Instruction
     std::string error;
 };
 
+// functions to convert all types of instructions
 std::string R_type_to_hex(const Instruction R);
 std::string I_type_to_hex(const Instruction I);
 std::string S_type_to_hex(const Instruction S);
+std::string B_type_to_hex(const Instruction B);
+std::string U_type_to_hex(const Instruction U);
+std::string J_type_to_hex(const Instruction J);
 
 #endif

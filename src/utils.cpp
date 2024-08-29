@@ -1,4 +1,6 @@
 #include "../include/utilis.h"
+#include "../include/encoder.h"
+#include "../include/risc-v.h"
 using namespace std;
 
 vector<string> tokenize(const string &line)
@@ -20,7 +22,7 @@ vector<string> tokenize(const string &line)
             label = token;
             token = "";
             i++;
-            // shull be handeled in future for now nothing happens
+            labelData.insert({label,ProgramCounter});
             continue;
         }
         if (line[i] == ' ')
@@ -72,9 +74,9 @@ int strToInt(const string &num)
             token += num[j];
         }
         if (token[1] == 'x')
-            i = stoi(token, nullptr, 16);
+            i = stoi(token.substr(2,num.length()-2),nullptr,16);
         else if (token[1] == 'b')
-            i = stoi(token, nullptr, 2);
+            i = stoi(token.substr(2,num.length()-2),nullptr,2);
         else
             i = stoi(token);
         i *= -1;
@@ -87,9 +89,9 @@ int strToInt(const string &num)
             token += num[j];
         }
         if (token[1] == 'x')
-            i = stoi(token, nullptr, 16);
+            i = stoi(token.substr(2,num.length()-2),nullptr,16);
         else if (token[1] == 'b')
-            i = stoi(token, nullptr, 2);
+            i = stoi(token.substr(2,num.length()-2),nullptr,2);
         else
             i = stoi(token);
     }

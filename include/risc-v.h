@@ -4,6 +4,10 @@
 #include "instruction.h"
 #include <unordered_map>
 
+Instruction Lines[50];
+std::unordered_map<std::string,int> labelData;
+int ProgramCounter;
+
 const std::unordered_map<std::string, InstructionInfo> instructionData = {
     {"add", {InstructionFormat::R_TYPE, 0x33, 0x0, 0x00}},
     {"sub", {InstructionFormat::R_TYPE, 0x33, 0x0, 0x20}},
