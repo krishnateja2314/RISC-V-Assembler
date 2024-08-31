@@ -11,7 +11,7 @@ int main()
 {
 
     string line;
-    ifstream input("../input.s");
+    ifstream input("input.s");
     ProgramCounter = 0;
     while (getline(input, line))
     {
@@ -20,7 +20,7 @@ int main()
     }
     input.close();
 
-    ofstream output("../output.hex");
+    ofstream output("output.hex");
 
     int linectr = ProgramCounter;
     string hexStr;
@@ -31,7 +31,7 @@ int main()
         {
             cout << "error at line " << ProgramCounter + 1 << ": " << Lines[ProgramCounter].error << endl;
             output.close();
-            remove("../output.hex");
+            remove("output.hex");
             return 0;
         }
         output << hexStr << endl;
