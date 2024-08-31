@@ -9,8 +9,10 @@ Instruction parseInstruction(const std::string &line)
     Instruction instrction;
 
     if (tokens.size() == 0)
+    {
         instrction.error = "empty line";
         return instrction;
+    }
 
     auto instrectInfo = instructionData.find(tokens[0]);
     if (instrectInfo == instructionData.end())
@@ -50,14 +52,32 @@ Instruction parseInstruction(const std::string &line)
     switch (instrction.instructionInfo.format)
     {
     case InstructionFormat::B_TYPE:
-        instrction.rs1 = rigToInt(tokens[1]);
-        instrction.rs2 = rigToInt(tokens[2]);
+        try
+        {
+            instrction.rs1 = rigToInt(tokens[1]);
+            instrction.rs2 = rigToInt(tokens[2]);
+        }
+        catch (const std::exception &e)
+        {
+            instrction.error = "invalid registers";
+        }
         instrction.label = tokens[3];
+        if (instrction.rs1 > 32 || instrction.rs2 > 32)
+            instrction.error = "invalid registers";
         break;
     case InstructionFormat::R_TYPE:
-        instrction.rd = rigToInt(tokens[1]);
-        instrction.rs1 = rigToInt(tokens[2]);
-        instrction.rs2 = rigToInt(tokens[3]);
+        try
+        {
+            instrction.rd = rigToInt(tokens[1]);
+            instrction.rs1 = rigToInt(tokens[2]);
+            instrction.rs2 = rigToInt(tokens[3]);
+        }
+        catch (const std::exception &e)
+        {
+            instrction.error = "invalid registers";
+        }
+        if (instrction.rs1 > 32 || instrction.rs2 > 32 || instrction.rd > 32)
+            instrction.error = "invalid registers";
         break;
     case InstructionFormat::I_TYPE:
         if (instrction.mnemonic[0] == 'e')
@@ -70,22 +90,58 @@ Instruction parseInstruction(const std::string &line)
                 instrction.immediate = 1;
             break;
         }
-        instrction.rd = rigToInt(tokens[1]);
-        instrction.rs1 = rigToInt(tokens[2]);
-        instrction.immediate = strToInt(tokens[3]);
+        try
+        {
+            instrction.rd = rigToInt(tokens[1]);
+            instrction.rs1 = rigToInt(tokens[2]);
+            instrction.immediate = strToInt(tokens[3]);
+        }
+        catch (const std::exception &e)
+        {
+            instrction.error = "invalid registers or immediate value";
+        }
+        if (instrction.rs1 > 32 || instrction.rd > 32)
+            instrction.error = "invalid registers";
         break;
     case InstructionFormat::S_TYPE:
-        instrction.rs1 = rigToInt(tokens[2]);
-        instrction.rs2 = rigToInt(tokens[1]);
-        instrction.immediate = strToInt(tokens[3]);
+        try
+        {
+            instrction.rs1 = rigToInt(tokens[2]);
+            instrction.rs2 = rigToInt(tokens[1]);
+            instrction.immediate = strToInt(tokens[3]);
+        }
+        catch (const std::exception &e)
+        {
+            instrction.error = "invalid registers or immediate value";
+        }
+        if (instrction.rs1 > 32 || instrction.rs2 > 32)
+            instrction.error = "invalid registers";
         break;
     case InstructionFormat::J_TYPE:
-        instrction.rd = rigToInt(tokens[1]);
-        instrction.immediate = strToInt(tokens[2]);
+        instrction.label = tokens[2];
+        try
+        {
+            instrction.rd = rigToInt(tokens[1]);
+        }
+        catch (const std::exception &e)
+        {
+            instrction.error = "invalid register";
+        }
+        if (instrction.rd > 32)
+            instrction.error = "invalid register";
         break;
     case InstructionFormat::U_TYPE:
-        instrction.rd = rigToInt(tokens[1]);
-        instrction.immediate = strToInt(tokens[2]);
+        try
+        {
+            instrction.rd = rigToInt(tokens[1]);
+            instrction.immediate = strToInt(tokens[2]);
+        }
+        catch (const std::exception &e)
+        {
+            instrction.error = instrction.error = "invalid registers or immediate value";
+        }
+        if (instrction.rd > 32)
+            instrction.error = "invalid register";
         break;
     default:
         break;
