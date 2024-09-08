@@ -11,7 +11,7 @@ int main()
 {
 
     string line;
-    ifstream input("input.s");
+    ifstream input("../input.s");
     int lineNo = 0;
     ProgramCounter = 0;
     while (getline(input, line))
@@ -21,7 +21,7 @@ int main()
     }
     input.close();
 
-    ofstream output("output.hex");
+    ofstream output("../output.hex");
 
     int linectr = ProgramCounter;
     string hexStr;
