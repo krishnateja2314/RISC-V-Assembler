@@ -12,12 +12,11 @@ int main()
 
     string line;
     ifstream input("input.s");
+    int lineNo = 0;
     ProgramCounter = 0;
     while (getline(input, line))
     {
         Lines[ProgramCounter] = parseInstruction(line);
-        if (Lines[ProgramCounter].error == "empty line")
-            continue;
         ProgramCounter++;
     }
     input.close();
@@ -31,6 +30,8 @@ int main()
         hexStr = InstructionToHex(Lines[ProgramCounter]);
         if (hexStr == "error!!")
         {
+            if (Lines[ProgramCounter].error == "empty line")
+                continue;
             cout << "error at line " << ProgramCounter + 1 << ": " << Lines[ProgramCounter].error << endl;
             output.close();
             remove("output.hex");

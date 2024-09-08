@@ -17,7 +17,10 @@ vector<string> tokenize(const string &line)
             {
                 return tokens;
             }
-            break;
+            if (tokens[0] == "")
+            {
+                tokens.resize(0);
+            }
         }
         if (line[i] == ',')
             continue;
