@@ -42,7 +42,7 @@ const std::unordered_map<std::string, InstructionInfo> instructionData = {
     {"bltu", {InstructionFormat::B_TYPE, 0x63, 0x6, 0x00}},
     {"bgeu", {InstructionFormat::B_TYPE, 0x63, 0x7, 0x00}},
     {"jal", {InstructionFormat::J_TYPE, 0x6F, 0x0, 0x00}},
-    {"jalr", {InstructionFormat::J_TYPE, 0x67, 0x0, 0x00}},
+    {"jalr", {InstructionFormat::I_TYPE, 0x67, 0x0, 0x00}},
     {"lui", {InstructionFormat::U_TYPE, 0x37, 0x0, 0x00}},
     {"auipc", {InstructionFormat::U_TYPE, 0x17, 0x0, 0x00}},
     {"ecall", {InstructionFormat::I_TYPE, 0x73, 0x0, 0x00}},
