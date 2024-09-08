@@ -83,10 +83,11 @@ The project is organized as follows:\
 │ ├── encoder.h \
 │ ├── instruction.h \
 │ ├── parser.h \
+│ ├── risc-v.h \
 │ └── utils.cpp \
 ├── test_cases \
-├── input.s \
 ├── Makefile \
+├── tester.py \
 └── README.md
 
 ## File Descriptions
@@ -100,12 +101,9 @@ The project is organized as follows:\
   - `data.cpp`: Contains the strings and maps to store the data of the instructions.
   - `main.cpp`: The entry point of the application.
 
-- **include/**: Contains all the Header files for the above source code files used in the project.
-
-- **input.s**: Contains the assembly code which works as the input for the program.
-
+- **include/**: Contains all the Header files for the above source code files used in the project and an additional risc-v.h file.
+  - `risc-v.h`: Contains the information about registers and instruction ,their corresponding opcode,funct values.
 - **Makefile**: Configuration file for Make to build the project.
-
 - **README.md**: Provides an overview of the project, including how to set it up and run it.
 - **test_cases**: Contains all the files which have test cases.
 - **tester.py**: This file automaticaly test all the file is test_cases
