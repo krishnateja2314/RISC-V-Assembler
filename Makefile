@@ -25,5 +25,5 @@ utils.o: utils.cpp
 cleano: 
 	rm src/*.o
 
-clean:
+clean: cleano
 	rm riscv_asm
