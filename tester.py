@@ -12,4 +12,7 @@ for file in file_names:
     subprocess.run(["riscv_asm.exe"])
     if os.path.exists("output.hex"):
         with open("output.hex",'r') as f:
+            print("---------------Start---------------")
             print(f.read())
+            print("----------------End---------------")
+            print("\n \n")
