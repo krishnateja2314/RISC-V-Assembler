@@ -1,6 +1,7 @@
 #include "../include/parser.h"
 #include "../include/utilis.h"
 #include "../include/risc-v.h"
+#include "../include/instruction.h"
 using namespace std;
 
 Instruction parseInstruction(const std::string &line)

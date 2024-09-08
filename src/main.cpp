@@ -16,6 +16,8 @@ int main()
     while (getline(input, line))
     {
         Lines[ProgramCounter] = parseInstruction(line);
+        if (Lines[ProgramCounter].error == "empty line")
+            continue;
         ProgramCounter++;
     }
     input.close();

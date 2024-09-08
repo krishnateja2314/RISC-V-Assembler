@@ -35,6 +35,7 @@ struct Instruction
     std::string label;
     int immediate;
     std::string error;
+    Instruction() : instructionInfo(InstructionInfo()), mnemonic(""), rd(0), rs1(0), rs2(0), label(""), immediate(0), error("") {}
 };
 
 // functions to convert all types of instructions

@@ -9,11 +9,14 @@ vector<string> tokenize(const string &line)
     vector<string> tokens;
     string token = "";
     string label;
-    bool xCount = 0;
     for (int i = 0; i < line.length(); i++)
     {
-        if (line[0] == '#' || line[0] == ';')
+        if (line[i] == '#' || line[i] == ';')
         {
+            if (tokens.size() == 0)
+            {
+                return tokens;
+            }
             break;
         }
         if (line[i] == ',')
@@ -34,9 +37,14 @@ vector<string> tokenize(const string &line)
         }
         token += line[i];
     }
-    tokens.push_back(token);
-    if (tokens.size() == 3 && ((tokens[2][0] <= '9' && tokens[2][0] >= '0') || tokens[2][0] == '-'))
+    if (tokens.size() == 0)
     {
+        return tokens;
+    }
+    size_t index = tokens[2].find("(");
+    if (index != string::npos)
+    {
+        tokens.resize(4);
         string token = tokens[2];
         string newToken = "";
         int j;
@@ -44,7 +52,7 @@ vector<string> tokenize(const string &line)
         {
             if (token[j] == '(')
             {
-                tokens.push_back(newToken);
+                tokens[3] = newToken;
                 newToken = "";
                 break;
             }
