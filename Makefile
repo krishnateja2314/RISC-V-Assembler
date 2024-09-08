@@ -26,4 +26,4 @@ cleano:
 	rm src/*.o
 
 clean: cleano
-	rm riscv_asm
+	rm riscv_asm.exe
