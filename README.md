@@ -5,6 +5,9 @@ The primary objective of this project is to design and implement a RISC-V assemb
 ## Table of Contents
 
 - [Overview](#overview)
+- [Instructions](#instructions)
+- [Project Expandability](#project-expandability)
+- [How to Build](#how-to-build)
 - [Installation](#Installation)
 - [Project Structure](#project-structure)
 - [File Descriptions](#file-descriptions)
