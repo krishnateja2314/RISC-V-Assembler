@@ -40,6 +40,7 @@ vector<string> tokenize(const string &line)
         }
         token += line[i];
     }
+    tokens.push_back(token);
     if (tokens.size() == 0)
     {
         return tokens;

@@ -11,28 +11,42 @@ int main()
 {
 
     string line;
-    ifstream input("../input.s");
-    int lineNo = 0;
+    ifstream input("input.s");
     ProgramCounter = 0;
+    EmptyLines[0] = 0;
+    int comment_ctr = 0;
     while (getline(input, line))
     {
         Lines[ProgramCounter] = parseInstruction(line);
+        if (comment_ctr == 0)
+        {
+            if (ProgramCounter != 0)
+            {
+                EmptyLines[ProgramCounter] = EmptyLines[ProgramCounter - 1];
+                comment_ctr++;
+            }
+        }
+        if (Lines[ProgramCounter].error == "empty line")
+        {
+            EmptyLines[ProgramCounter] = EmptyLines[ProgramCounter] + 1;
+            continue;
+        }
         ProgramCounter++;
+        comment_ctr = 0;
     }
     input.close();
 
-    ofstream output("../output.hex");
+    ofstream output("output.hex");
 
     int linectr = ProgramCounter;
     string hexStr;
     for (ProgramCounter = 0; ProgramCounter < linectr; ProgramCounter++)
     {
         hexStr = InstructionToHex(Lines[ProgramCounter]);
+        int comment_line = EmptyLines[ProgramCounter];
         if (hexStr == "error!!")
         {
-            if (Lines[ProgramCounter].error == "empty line")
-                continue;
-            cout << "error at line " << ProgramCounter + 1 << ": " << Lines[ProgramCounter].error << endl;
+            cout << "error at line " << ProgramCounter + 1 + EmptyLines[ProgramCounter] << ": " << Lines[ProgramCounter].error << endl;
             output.close();
             remove("output.hex");
             return 0;

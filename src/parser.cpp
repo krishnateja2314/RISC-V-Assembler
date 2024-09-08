@@ -29,7 +29,7 @@ Instruction parseInstruction(const std::string &line)
     if (instrction.instructionInfo.format == InstructionFormat::B_TYPE)
         size--;
     // convers alias names to rigester names
-    for (int i = 1; i < tokens.size(); i++)
+    for (int i = 1; i < size; i++)
     {
         string token = tokens[i];
         string newToken = "";
