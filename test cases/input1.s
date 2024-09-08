@@ -15,4 +15,5 @@ Loop: xor a5, a3, a7
 lui x9, 0x10000
 L2: add t1, x8, s10
 L1: sub x1, x2, x3
-addi x1, x0, 20
+addi x1, x0, 200
+jalr x2, x6, 50
