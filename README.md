@@ -23,6 +23,7 @@ This project focuses on supporting a subset of the RISC-V instruction set, speci
 - The application is space sencitive. So bad spaces will cause the application to give error.
 - If any comment is present after a instrection there shoud be atleast one space between instructon and comment.
 - Project can only handile 50 lines excluding comments.
+- Any files with assembly code can be tested using `tester.py` irrespective of its name.
 
 ## Project Expandability
 
@@ -61,6 +62,12 @@ Then clean can be used to clean all the files:
 make clean
 ```
 
+Python file can be used to test the project.
+
+```console
+python tester.py
+```
+
 ## Project Structure
 
 The project is organized as follows:\
@@ -77,6 +84,7 @@ The project is organized as follows:\
 │ ├── instruction.h \
 │ ├── parser.h \
 │ └── utils.cpp \
+├── test_cases \
 ├── input.s \
 ├── Makefile \
 └── README.md
@@ -99,3 +107,5 @@ The project is organized as follows:\
 - **Makefile**: Configuration file for Make to build the project.
 
 - **README.md**: Provides an overview of the project, including how to set it up and run it.
+- **test_cases**: Contains all the files which have test cases.
+- **tester.py**: This file automaticaly test all the file is test_cases
